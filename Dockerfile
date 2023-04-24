@@ -3,6 +3,7 @@ FROM debian:bullseye AS runtime
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+apt-utils && \
 software-properties-common \
 sudo \
 python3.10 \
@@ -45,7 +46,7 @@ RUN python3 -m install --skip-torch-cuda-test
 RUN pip install --upgrade --force-reinstall xformers==0.0.18 torch torchvision torchaudio gdown
 
 RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
-    sudo echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    sudo bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen' && \
     sudo apt update
 
 ADD start.sh /start.sh
