@@ -20,7 +20,6 @@ wget \
 curl \
 psmisc \
 nano \
-sudo \
 openssh-server \
 apt-transport-https ca-certificates && update-ca-certificates
 
