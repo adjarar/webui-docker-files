@@ -3,7 +3,7 @@ FROM debian:bullseye AS runtime
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-apt-utils && \
+apt-utils \
 software-properties-common \
 sudo \
 python3.10 \
