@@ -49,11 +49,11 @@ RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen' && \
     sudo apt update
 
-ADD start.sh ~/start.sh
-RUN chmod a+x ~/start.sh
+ADD start.sh /home/webui/start.sh
+RUN chmod a+x /home/webui/start.sh
 
-ADD download_models.sh ~/download_models.sh
-RUN chmod a+x ~/download_models.sh
+ADD download_models.sh /home/webui/download_models.sh
+RUN chmod a+x /home/webui/download_models.sh
 
 SHELL ["/bin/bash", "--login", "-c"]
-CMD [ "/start.sh", "/download_models.sh" ]
+CMD [ "/home/webui/start.sh", "/home/webui/download_models.sh" ]
