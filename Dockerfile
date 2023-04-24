@@ -2,11 +2,6 @@ FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04 AS runtime
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN useradd -m webui && \
-    usermod -aG sudo webui && \
-    chown -R webui:webui /home/webui && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
 software-properties-common \
 sudo \
@@ -24,9 +19,14 @@ nano \
 openssh-server \
 apt-transport-https ca-certificates && update-ca-certificates
 
-WORKDIR /home/webui
+RUN useradd -m webui && \
+    usermod -aG sudo webui && \
+    chown -R webui:webui /home/webui && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER webui
+
+WORKDIR /home/webui
 
 RUN git clone https://github.com/adjarar/stable-diffusion-webui.git
 
