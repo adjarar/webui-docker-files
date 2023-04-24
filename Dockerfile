@@ -7,7 +7,7 @@ RUN useradd -m webui && \
     chown -R webui:webui /home/webui && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
 libglib2.0-0 \
 libsm6 \
 libgl1 \
