@@ -50,10 +50,10 @@ RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo apt update
 
 ADD start.sh /home/webui/start.sh
-RUN chmod a+x /home/webui/start.sh
+RUN sudo chown webui:webui /home/webui/start.sh && chmod a+x /home/webui/start.sh
 
 ADD download_models.sh /home/webui/download_models.sh
-RUN chmod a+x /home/webui/download_models.sh
+RUN sudo chown webui:webui /home/webui/download_models.sh && chmod a+x /home/webui/download_models.sh
 
 SHELL ["/bin/bash", "--login", "-c"]
 CMD [ "/home/webui/start.sh", "/home/webui/download_models.sh" ]
