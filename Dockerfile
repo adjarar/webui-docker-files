@@ -8,12 +8,13 @@ RUN useradd -m webui && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+software-properties-common \
+sudo \
 libglib2.0-0 \
 libsm6 \
 libgl1 \
 libxrender1 \
 libxext6 \
-software-properties-common \
 git \
 ffmpeg \
 wget \
