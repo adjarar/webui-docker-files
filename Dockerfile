@@ -5,6 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
 software-properties-common \
 sudo \
+python3.10 \
+python3-venv \
 libglib2.0-0 \
 libsm6 \
 libgl1 \
@@ -32,8 +34,8 @@ RUN git clone https://github.com/adjarar/stable-diffusion-webui.git
 
 WORKDIR /home/webui/stable-diffusion-webui
 
-RUN sudo python -m venv /webui/stable-diffusion-webui/venv
-ENV PATH="/webui/stable-diffusion-webui/venv/bin:$PATH"
+RUN python -m venv /home/webui/stable-diffusion-webui/venv
+ENV PATH="/home/webui/stable-diffusion-webui/venv/bin:$PATH"
 
 WORKDIR /home/webui/stable-diffusion-webui
 
