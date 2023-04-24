@@ -34,13 +34,13 @@ RUN git clone https://github.com/adjarar/stable-diffusion-webui.git
 
 WORKDIR /home/webui/stable-diffusion-webui
 
-RUN python -m venv /home/webui/stable-diffusion-webui/venv
+RUN python3 -m venv /home/webui/stable-diffusion-webui/venv
 ENV PATH="/home/webui/stable-diffusion-webui/venv/bin:$PATH"
 
 WORKDIR /home/webui/stable-diffusion-webui
 
 ADD install.py .
-RUN sudo python -m install --skip-torch-cuda-test
+RUN sudo python3 -m install --skip-torch-cuda-test
 RUN sudo pip install --upgrade --force-reinstall xformers==0.0.18 torch torchvision torchaudio gdown
 
 RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
