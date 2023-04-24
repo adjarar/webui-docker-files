@@ -40,7 +40,7 @@ ENV PATH="/home/webui/stable-diffusion-webui/venv/bin:$PATH"
 WORKDIR /home/webui/stable-diffusion-webui
 
 ADD install.py .
-RUN sudo python3 -m install --skip-torch-cuda-test
+RUN sudo python3 -m install.py --skip-torch-cuda-test
 RUN sudo pip install --upgrade --force-reinstall xformers==0.0.18 torch torchvision torchaudio gdown
 
 RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
