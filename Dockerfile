@@ -50,7 +50,7 @@ RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo apt update
 
 ADD start.sh ~/start.sh
-RUN chmod a+x /start.sh
+RUN chmod a+x ~/start.sh
 
 ADD download_models.sh ~/download_models.sh
 RUN chmod a+x ~/download_models.sh
