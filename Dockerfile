@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04 AS runtime
+FROM debian:bullseye AS runtime
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -45,7 +45,7 @@ RUN python3 -m install --skip-torch-cuda-test
 RUN pip install --upgrade --force-reinstall xformers==0.0.18 torch torchvision torchaudio gdown
 
 RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
-    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    sudo echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     sudo apt update
 
 ADD start.sh /start.sh
