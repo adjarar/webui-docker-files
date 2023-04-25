@@ -28,11 +28,9 @@ RUN useradd -m -s /bin/bash webui && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER webui
-
 WORKDIR /home/webui
 
 RUN git clone https://github.com/adjarar/stable-diffusion-webui.git
-
 WORKDIR /home/webui/stable-diffusion-webui
 
 RUN python3 -m venv /home/webui/stable-diffusion-webui/venv
@@ -45,4 +43,8 @@ RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen' && \
     sudo apt-get update
 
-ADD onstart.sh /root/onstart.sh
+USER root
+WORKDIR /root
+
+ADD onstart.sh .
+RUN chmod +x onstart.sh
