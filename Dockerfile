@@ -17,8 +17,8 @@ git \
 ffmpeg \
 wget \
 curl \
-psmisc \
-nano
+nano \
+psmisc
 
 RUN pip install gdown
 
