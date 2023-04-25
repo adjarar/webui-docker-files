@@ -1,3 +1,5 @@
 cd /home/webui
-gdown 1jLzJLNO-eMeV3RmFI-tcGvXgPbFVHiEB
 touch hello_world
+
+cd stable-diffusion-models/models/Stable-diffusion
+gdown 1ccg6RDEVpxFLBw0HV-bhlgXd7LStroxJ
