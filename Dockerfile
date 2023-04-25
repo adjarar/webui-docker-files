@@ -40,7 +40,6 @@ ENV PATH="/home/webui/stable-diffusion-webui/venv/bin:$PATH"
 
 ADD install.py .
 RUN python3 -m install --skip-torch-cuda-test
-RUN pip install --upgrade --force-reinstall xformers==0.0.18 torch torchvision torchaudio
 
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen' && \
