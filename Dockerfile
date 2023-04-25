@@ -1,14 +1,12 @@
-FROM debian:bullseye
+FROM ubuntu:jammy
 
-ENV DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 apt-utils \
 software-properties-common \
 sudo \
-python3.10 \
 python3-pip \
-python3-venv \
 libglib2.0-0 \
 libsm6 \
 libgl1 \
@@ -19,11 +17,11 @@ ffmpeg \
 wget \
 curl \
 psmisc \
-nano \
-openssh-server \
-apt-transport-https ca-certificates && update-ca-certificates
+nano
 
-RUN useradd -m webui && \
+RUN pip install gdown
+
+RUN useradd -m -s /bin/bash webui && \
     usermod -aG sudo webui && \
     chown -R webui:webui /home/webui && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
@@ -41,15 +39,14 @@ ENV PATH="/home/webui/stable-diffusion-webui/venv/bin:$PATH"
 
 ADD install.py .
 RUN python3 -m install --skip-torch-cuda-test
-RUN pip install --upgrade --force-reinstall xformers==0.0.18 torch torchvision torchaudio gdown
+RUN pip install --upgrade --force-reinstall xformers==0.0.18 torch torchvision torchaudio
 
-RUN sudo apt clean && sudo rm -rf /var/lib/apt/lists/* && \
+RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen' && \
-    sudo apt update
+    sudo apt-get update
 
 ADD download_models.sh /home/webui/download_models.sh
 RUN sudo chown webui:webui /home/webui/download_models.sh && \
     chmod a+x /home/webui/download_models.sh
 
-SHELL ["/bin/bash", "--login", "-c"]
 CMD [ "/home/webui/download_models.sh" ]
