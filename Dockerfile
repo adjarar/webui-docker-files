@@ -7,6 +7,7 @@ apt-utils \
 software-properties-common \
 sudo \
 python3-pip \
+python3.10-venv \
 libglib2.0-0 \
 libsm6 \
 libgl1 \
@@ -45,8 +46,4 @@ RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen' && \
     sudo apt-get update
 
-ADD download_models.sh /home/webui/download_models.sh
-RUN sudo chown webui:webui /home/webui/download_models.sh && \
-    chmod a+x /home/webui/download_models.sh
-
-CMD [ "/home/webui/download_models.sh" ]
+ADD onstart.sh /root/onstart.sh
