@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 apt-utils \
 software-properties-common \
 sudo \
+wget \
 python3-pip \
 python3.10-venv \
 libglib2.0-0 \
@@ -15,7 +16,6 @@ libxrender1 \
 libxext6 \
 git \
 ffmpeg \
-wget \
 curl \
 nano \
 psmisc
