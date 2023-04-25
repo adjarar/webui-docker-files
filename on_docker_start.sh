@@ -2,4 +2,4 @@ cd /home/webui
 touch hello_world
 
 cd ~/stable-diffusion-webui/models/Stable-diffusion
-gdown 1ccg6RDEVpxFLBw0HV-bhlgXd7LStroxJ
+gdown 15zgfkYbrPjLA2j69VSiE_ITVRRFDF9I7
