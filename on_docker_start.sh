@@ -10,6 +10,7 @@ git clone https://github.com/Mikubill/sd-webui-controlnet.git
 git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.git
 git clone https://github.com/Coyote-A/ultimate-upscale-for-automatic1111.git
 git clone https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111.git
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg.git
 
 cd ~/stable-diffusion-webui/extensions/sd-webui-controlnet/models
 wget https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1e_sd15_tile.pth
