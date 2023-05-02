@@ -16,9 +16,9 @@ libxrender1 \
 libxext6 \
 ffmpeg \
 git \
+nano \
 curl \
-psmisc \
-nano
+psmisc
 
 RUN pip install gdown
 
