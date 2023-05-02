@@ -30,7 +30,7 @@ RUN useradd -m -s /bin/bash webui && \
 USER webui
 WORKDIR /home/webui
 
-RUN git clone https://github.com/adjarar/stable-diffusion-webui.git
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 WORKDIR /home/webui/stable-diffusion-webui
 
 RUN python3 -m venv /home/webui/stable-diffusion-webui/venv
