@@ -14,8 +14,8 @@ libsm6 \
 libgl1 \
 libxrender1 \
 libxext6 \
-git \
 ffmpeg \
+git \
 curl \
 psmisc \
 nano
