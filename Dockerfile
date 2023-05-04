@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.1-runtime-ubuntu22.04
+FROM nvidia/cuda:12.0.1-runtime-ubuntu22.04
 
 ARG DEBIAN_FRONTEND noninteractive
 
