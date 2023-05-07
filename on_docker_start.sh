@@ -1,6 +1,6 @@
 cd ~/stable-diffusion-webui
-wget https://raw.githubusercontent.com/adjarar/webui-docker-files/main/webui-user.sh -O webui-user.sh
-wget https://raw.githubusercontent.com/adjarar/webui-docker-files/main/config.json -O config.json
+wget https://raw.githubusercontent.com/adjarar/webui-docker-files/latest/webui-user.sh -O webui-user.sh
+wget https://raw.githubusercontent.com/adjarar/webui-docker-files/latest/config.json -O config.json
 
 cd ~/stable-diffusion-webui/models/Stable-diffusion
 gdown 15zgfkYbrPjLA2j69VSiE_ITVRRFDF9I7 # owlstudio model
