@@ -54,4 +54,4 @@ RUN useradd -m -s /bin/bash webui && \
     chown -R webui:webui /home/webui && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
    
-RUN chown -R webui:webui usr/local/bin/stable-diffusion-webui
+RUN chown -R webui:webui /usr/local/bin/stable-diffusion-webui
