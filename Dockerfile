@@ -18,9 +18,15 @@ ffmpeg \
 git \
 nano \
 curl \
-psmisc
+psmisc \
+pkg-config \
+libcairo2-dev \
+pkg-config \
+python3-dev \
+build-essential \
+google-perftools
 
-RUN pip install wheel gdown
+RUN pip install wheel gdown pycairo
 
 RUN useradd -m -s /bin/bash webui && \
     usermod -aG sudo webui && \
@@ -28,13 +34,16 @@ RUN useradd -m -s /bin/bash webui && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER webui
-WORKDIR /home/webui
 
+WORKDIR /usr/local/bin/
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
-WORKDIR /home/webui/stable-diffusion-webui
 
-RUN python3 -m venv /home/webui/stable-diffusion-webui/venv
-ENV PATH="/home/webui/stable-diffusion-webui/venv/bin:$PATH"
+WORKDIR /usr/local/bin/stable-diffusion-webui
+
+RUN python3 -m venv .
+
+ENV PATH="/usr/local/bin/stable-diffusion-webui/venv/bin:$PATH"
+ENV PATH="/usr/local/bin/stable-diffusion-webui:$PATH"
 
 ADD install.py .
 RUN python3 -m install --skip-torch-cuda-test
@@ -44,7 +53,7 @@ RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/* && \
     sudo apt-get update
 
 USER root
-WORKDIR /root
 
+WORKDIR /root
 ADD onstart.sh .
 RUN chmod +x onstart.sh
