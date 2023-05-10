@@ -20,7 +20,7 @@ nano \
 curl \
 psmisc
 
-RUN pip install gdown
+RUN pip install wheel gdown
 
 RUN useradd -m -s /bin/bash webui && \
     usermod -aG sudo webui && \
