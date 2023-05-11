@@ -43,7 +43,7 @@ WORKDIR INSTALL_DIR
 RUN python3 -m venv .
 ENV VIRTUAL_ENV=INSTALL_DIR/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN . $VIRTUAL_ENV/bin/activate
+RUN /bin/bash -c "source $VIRTUAL_ENV/bin/activate"
 
 RUN pip install wheel gdown pycairo
 
