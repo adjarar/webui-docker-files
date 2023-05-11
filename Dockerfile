@@ -9,6 +9,7 @@ sudo \
 wget \
 python3-pip \
 python3.10-venv \
+python3-dev \
 libglib2.0-0 \
 libsm6 \
 libgl1 \
@@ -22,7 +23,6 @@ psmisc \
 pkg-config \
 libcairo2-dev \
 pkg-config \
-python3-dev \
 build-essential \
 google-perftools
 
