@@ -40,10 +40,10 @@ ENV INSTALL_DIR /home/webui/stable-diffusion-webui
 
 WORKDIR INSTALL_DIR
 
-RUN python3 -m venv .
+# This is the correct way to activate venv inside Dockerfile see https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
 ENV VIRTUAL_ENV=INSTALL_DIR/venv
+RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN /bin/bash -c "source $VIRTUAL_ENV/bin/activate"
 
 RUN pip install wheel gdown pycairo
 
