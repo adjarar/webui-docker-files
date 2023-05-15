@@ -60,7 +60,7 @@ RUN mkdir venv && \
     
 ADD install.py .
 
-RUN . $USER_HOME/stable-diffusion-webui/venv/bin && \
+RUN . $USER_HOME/stable-diffusion-webui/venv/bin/activate && \
     python3 -m pip install --upgrade pip && \
     pip install wheel pycairo && \
     python3 install.py --skip-torch-cuda-test && \
