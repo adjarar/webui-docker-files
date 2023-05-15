@@ -4,10 +4,6 @@ ARG DEBIAN_FRONTEND noninteractive
 
 RUN bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen'
 
-WORKDIR /root
-ADD onstart.sh .
-RUN chmod +x onstart.sh
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils \
     software-properties-common \
@@ -83,6 +79,12 @@ RUN . .venv/bin/activate && \
 
 # remove wheel cache
 RUN rm -rf $USER_HOME/.cache/pip/wheels/*
+
+# add onstart.sh to root
+USER root
+WORKDIR /root
+ADD onstart.sh .
+RUN chmod +x onstart.sh
     
 EXPOSE 9090
 EXPOSE 7860
