@@ -47,7 +47,7 @@ RUN useradd -m -g sudo -s /bin/bash $USER && \
     
 USER $USER
 
-ARG USER_HOME="/home/$USER
+ARG USER_HOME="/home/$USER"
 ARG WEBUI_ACTIVATION_DIR="$USER_HOME/stable-diffusion-webui/venv/bin
 
 WORKDIR USER_HOME
