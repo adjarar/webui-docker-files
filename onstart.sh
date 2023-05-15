@@ -3,10 +3,10 @@
 sudo -u webui bash << 'EOF'
 
 cd ~
-git clone https://github.com/adjarar/webui-files-and-settings.git
-cd webui-files-and-settings
-chmod +x settings_and_downloads.sh
+git clone https://github.com/adjarar/webui-invoke-init.git
+cd webui-invoke-init
+chmod +x init.sh
 
-bash settings_and_downloads.sh
+bash init.sh
 
 EOF
