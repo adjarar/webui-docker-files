@@ -65,8 +65,26 @@ RUN . $WEBUI_ACTIVATION_DIR/activate && \
 ADD install.py .
 RUN . $WEBUI_ACTIVATION_DIR/activate && \
     python3 install.py --skip-torch-cuda-test && \
-    pip cache purge && \
-    rm -rf $USER_HOME/.cache/pip/wheels/*
+    pip cache purge
+    
+# create the root dir and switch to it
+ARG INVOKEAI_ROOT="$USER_HOME/invokeai"
+RUN mkdir $INVOKEAI_ROOT
+
+# Create the invokeai venv
+WORKDIR $INVOKEAI_ROOT
+RUN python3 -m venv .venv --prompt InvokeAI
+
+# make sure the latest version of pip is installed inside the venv
+RUN . .venv/bin/activate && \
+    python3 -m pip install --upgrade pip && \
+    pip install xformers==0.0.16rc425 && \
+    pip install triton && \
+    pip install "InvokeAI[xformers]" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117 && \
+    pip cache purge
+
+# remove wheel cache
+RUN rm -rf $USER_HOME/.cache/pip/wheels/*
     
 EXPOSE 9090
 EXPOSE 7860
