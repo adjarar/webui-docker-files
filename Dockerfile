@@ -35,7 +35,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     deborphan
 
 RUN pip install gdown
-    
+
+# Clean the apt cache
 RUN apt-get autoremove --purge && \
     deborphan | xargs sudo apt-get -y remove --purge && \
     apt-get clean && \
@@ -48,7 +49,6 @@ RUN useradd -m -g sudo -s /bin/bash $USER && \
 USER $USER
 
 ARG USER_HOME="/home/$USER"
-ARG WEBUI_ACTIVATION_DIR="$USER_HOME/stable-diffusion-webui/venv/bin"
 
 WORKDIR $USER_HOME
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
@@ -56,18 +56,17 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 WORKDIR $USER_HOME/stable-diffusion-webui
 
 RUN mkdir venv && \
-    python3 -m venv venv
-
-RUN . $WEBUI_ACTIVATION_DIR/activate && \
-    python3 -m pip install --upgrade pip && \
-    pip install wheel pycairo
-
+    python3 -m venv venv --prompt webui
+    
 ADD install.py .
-RUN . $WEBUI_ACTIVATION_DIR/activate && \
+
+RUN . $USER_HOME/stable-diffusion-webui/venv/bin && \
+    python3 -m pip install --upgrade pip && \
+    pip install wheel pycairo && \
     python3 install.py --skip-torch-cuda-test && \
     pip cache purge
     
-# create the root dir and switch to it
+# Invoke install
 ARG INVOKEAI_ROOT="$USER_HOME/invokeai"
 RUN mkdir $INVOKEAI_ROOT
 
@@ -75,7 +74,6 @@ RUN mkdir $INVOKEAI_ROOT
 WORKDIR $INVOKEAI_ROOT
 RUN python3 -m venv .venv --prompt InvokeAI
 
-# make sure the latest version of pip is installed inside the venv
 RUN . .venv/bin/activate && \
     python3 -m pip install --upgrade pip && \
     pip install xformers==0.0.16rc425 && \
