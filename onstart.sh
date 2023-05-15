@@ -1,13 +1,12 @@
 #!/bin/bash
 
-wget https://raw.githubusercontent.com/adjarar/webui-docker-files/latest/on_docker_start.sh
-chmod +x on_docker_start.sh
-mv on_docker_start.sh /home/webui
-
-# Switch to the webui user
-su -s /bin/bash webui << 'EOF'
+sudo -u webui bash << 'EOF'
 
 cd ~
-bash on_docker_start.sh
+git clone https://github.com/adjarar/webui-files-and-settings.git
+cd webui-files-and-settings
+chmod +x settings_and_downloads.sh
+
+bash settings_and_downloads.sh
 
 EOF
