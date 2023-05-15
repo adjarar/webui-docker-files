@@ -50,7 +50,7 @@ USER $USER
 ARG USER_HOME="/home/$USER"
 ARG WEBUI_ACTIVATION_DIR="$USER_HOME/stable-diffusion-webui/venv/bin"
 
-WORKDIR USER_HOME
+WORKDIR $USER_HOME
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 
 WORKDIR $USER_HOME/stable-diffusion-webui
@@ -64,12 +64,9 @@ RUN . $WEBUI_ACTIVATION_DIR/activate && \
 
 ADD install.py .
 RUN . $WEBUI_ACTIVATION_DIR/activate && \
-    python3 install.py --skip-torch-cuda-test
-    
-RUN . $WEBUI_ACTIVATION_DIR/activate && \
+    python3 install.py --skip-torch-cuda-test && \
     pip cache purge && \
     rm -rf $USER_HOME/.cache/pip/wheels/*
     
 EXPOSE 9090
 EXPOSE 7860
-    
