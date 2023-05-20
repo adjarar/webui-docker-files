@@ -1,5 +1,6 @@
 FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04
 
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
 ARG DEBIAN_FRONTEND noninteractive
 
 RUN bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen'
