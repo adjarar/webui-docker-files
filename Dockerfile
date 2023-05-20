@@ -77,12 +77,12 @@ RUN python3 -m venv .venv --prompt InvokeAI
 
 RUN . .venv/bin/activate && \
     python3 -m pip install --upgrade pip && \
-    pip install xformers==0.0.16rc425 && \
+    pip install xformers==0.0.19 && \
     pip install triton && \
     pip install pypatchmatch
     
 RUN . .venv/bin/activate && \
-    pip install "InvokeAI[xformers]==2.3.5" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117
+    pip install "InvokeAI[xformers]" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117
         
 RUN . .venv/bin/activate pip cache purge
 
