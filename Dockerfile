@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-opencv \
     libopencv-dev
 
-RUN pip install gdown
+RUN pip install gdown discord pillow
 
 # Clean the apt cache
 RUN apt-get autoremove --purge && \
@@ -60,7 +60,7 @@ ADD install.py .
 
 RUN . $USER_HOME/stable-diffusion-webui/venv/bin/activate && \
     python3 -m pip install --upgrade pip && \
-    pip install wheel pycairo discord pillow && \
+    pip install wheel pycairo && \
     python3 install.py --skip-torch-cuda-test && \
     pip cache purge
     
