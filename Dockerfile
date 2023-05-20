@@ -82,7 +82,7 @@ RUN . .venv/bin/activate && \
     pip install pypatchmatch
     
 RUN . .venv/bin/activate && \
-    pip install "InvokeAI[xformers]" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117 && \
+    pip install "InvokeAI[xformers]" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117
         
 RUN . .venv/bin/activate pip cache purge
 
