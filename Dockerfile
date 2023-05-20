@@ -5,10 +5,9 @@ ARG DEBIAN_FRONTEND noninteractive
 
 RUN bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen'
 
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential apt-utils \
 
 RUN apt-get install -y --no-install-recommends \
-    apt-utils \
     software-properties-common \
     sudo \
     wget \
