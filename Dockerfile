@@ -33,6 +33,8 @@ RUN apt-get install -y --no-install-recommends \
     python3-opencv \
     libopencv-dev
 
+RUN rm /etc/localtime
+
 RUN pip install gdown discord pillow
 
 # Clean the apt cache
