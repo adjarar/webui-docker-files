@@ -79,9 +79,12 @@ RUN . .venv/bin/activate && \
     python3 -m pip install --upgrade pip && \
     pip install xformers==0.0.16rc425 && \
     pip install triton && \
-    pip install pypatchmatch && \
+    pip install pypatchmatch
+    
+RUN . .venv/bin/activate && \
     pip install "InvokeAI[xformers]" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117 && \
-    pip cache purge
+        
+RUN . .venv/bin/activate pip cache purge
 
 # remove wheel cache
 RUN rm -rf $USER_HOME/.cache/pip/wheels/*
