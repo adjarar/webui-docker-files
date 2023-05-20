@@ -5,6 +5,7 @@ ARG DEBIAN_FRONTEND noninteractive
 RUN bash -c 'echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen'
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential && \
     apt-utils \
     software-properties-common \
     sudo \
@@ -26,9 +27,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config \
     libcairo2-dev \
     pkg-config \
-    build-essential \
     google-perftools \
-    deborphan
+    deborphan \
+    python3-opencv \
+    libopencv-dev
 
 RUN pip install gdown
 
@@ -58,7 +60,7 @@ ADD install.py .
 
 RUN . $USER_HOME/stable-diffusion-webui/venv/bin/activate && \
     python3 -m pip install --upgrade pip && \
-    pip install wheel pycairo && \
+    pip install wheel pycairo discord pillow && \
     python3 install.py --skip-torch-cuda-test && \
     pip cache purge
     
@@ -74,6 +76,7 @@ RUN . .venv/bin/activate && \
     python3 -m pip install --upgrade pip && \
     pip install xformers==0.0.16rc425 && \
     pip install triton && \
+    pip install pypatchmatch && \
     pip install "InvokeAI[xformers]" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117 && \
     pip cache purge
 
