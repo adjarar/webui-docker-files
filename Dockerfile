@@ -35,7 +35,7 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN rm /etc/localtime
 
-RUN pip install gdown discord pillow
+RUN pip install gdown discord pillow rembg[gpu]
 
 # Clean the apt cache
 RUN apt-get autoremove --purge && \
