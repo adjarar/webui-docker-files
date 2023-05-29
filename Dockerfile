@@ -31,7 +31,8 @@ RUN apt-get install -y --no-install-recommends \
     google-perftools \
     deborphan \
     python3-opencv \
-    libopencv-dev
+    libopencv-dev \
+    libtbb-dev
 
 RUN rm /etc/localtime
 
