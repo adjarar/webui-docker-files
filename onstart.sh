@@ -3,8 +3,8 @@
 sudo -u webui bash << 'EOF'
 
 cd ~
-git clone https://github.com/adjarar/webui-init.git
-cd webui-init
+git clone https://github.com/adjarar/webui-invoke-init.git
+cd webui-invoke-init
 chmod +x init.sh
 
 bash init.sh
