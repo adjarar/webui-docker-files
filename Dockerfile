@@ -36,7 +36,7 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN rm /etc/localtime
 
-RUN pip install gdown discord pillow rembg[gpu]
+RUN pip install gdown discord.py pillow rembg[gpu]
 
 # Clean the apt cache
 RUN apt-get autoremove --purge && \
@@ -68,25 +68,6 @@ RUN . $USER_HOME/stable-diffusion-webui/venv/bin/activate && \
     python3 install.py --skip-torch-cuda-test && \
     pip cache purge
     
-# Invoke install
-ARG INVOKEAI_ROOT="$USER_HOME/invokeai"
-RUN mkdir $INVOKEAI_ROOT
-
-# Create the invokeai venv
-WORKDIR $INVOKEAI_ROOT
-RUN python3 -m venv .venv --prompt InvokeAI
-
-RUN . .venv/bin/activate && \
-    python3 -m pip install --upgrade pip && \
-    pip install xformers==0.0.19 && \
-    pip install triton && \
-    pip install pypatchmatch
-    
-RUN . .venv/bin/activate && \
-    pip install "InvokeAI[xformers]==2.3.5" --use-pep517 --extra-index-url https://download.pytorch.org/whl/cu117
-        
-RUN . .venv/bin/activate pip cache purge
-
 # remove wheel cache
 RUN rm -rf $USER_HOME/.cache/pip/wheels/*
 
@@ -96,5 +77,4 @@ WORKDIR /root
 ADD onstart.sh .
 RUN chmod +x onstart.sh
     
-EXPOSE 9090
 EXPOSE 7860
