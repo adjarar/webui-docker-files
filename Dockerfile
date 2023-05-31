@@ -67,7 +67,10 @@ RUN . $USER_HOME/stable-diffusion-webui/venv/bin/activate && \
     pip install wheel pycairo && \
     python3 install.py --skip-torch-cuda-test && \
     pip cache purge
-    
+
+# Remove the general pip cache
+RUN pip cache purge
+
 # remove wheel cache
 RUN rm -rf $USER_HOME/.cache/pip/wheels/*
 
