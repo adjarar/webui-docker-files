@@ -31,8 +31,7 @@ RUN apt-get install -y --no-install-recommends \
     google-perftools \
     deborphan \
     python3-opencv \
-    libopencv-dev \
-    libtbb-dev
+    libopencv-dev
 
 RUN rm /etc/localtime
 
@@ -44,13 +43,11 @@ RUN apt-get autoremove --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* 
 
-ARG USER="webui"
-RUN useradd -m -g sudo -s /bin/bash $USER && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+ARG USER="root"
     
 USER $USER
 
-ARG USER_HOME="/home/$USER"
+ARG USER_HOME="/root"
 
 WORKDIR $USER_HOME
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
